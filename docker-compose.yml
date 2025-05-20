@@ -20,5 +20,15 @@ services:
     volumes:
       - mongo-data:/data/db
 
+  mqtt-subscriber:
+    build: ./mqtt_to_mongodb
+    container_name: mqtt-subscriber
+    depends_on:
+      - mosquitto
+      - mongodb
+    restart: unless-stopped
+    env_file:
+      - .env
+
 volumes:
   mongo-data:

@@ -1,5 +1,9 @@
 # kommandoer 
 
+## start med at builde docker compose
+
+    docker-compose build
+
 ## Start docker compose
 
 med den lokale `docker-compose.yml"

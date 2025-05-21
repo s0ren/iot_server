@@ -42,3 +42,8 @@ med den lokale `docker-compose.yml"
 
     docker exec mongodb mongosh "mongodb://localhost:27017/iot" --quiet --eval "db.messages.find().sort({ timestamp: -1 }).limit(10).forEach(doc => printjson(doc));"
 
+# Integrationstest
+
+    pip install -r test/requirements-test.txt
+
+    

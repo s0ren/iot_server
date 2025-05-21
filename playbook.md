@@ -16,7 +16,9 @@ med den lokale `docker-compose.yml"
 
 ## Send demo message til Mosquitto mqtt
 
-    docker run --rm eclipse-mosquitto mosquitto_pub -h host.docker.internal -t sensor/test -m '{"value": 42}'
+    <!-- docker run --rm eclipse-mosquitto mosquitto_pub -h host.docker.internal -t sensor/test -m '{"value": 42}' -->
+
+    docker run --rm eclipse-mosquitto mosquitto_pub -h host.docker.internal -t sensor/test -m '{"value": 42.10, "timestamp": 2024-05-20T21:37:49.414Z }'
 
 ## Opret virtuelt env til python
 
@@ -46,4 +48,19 @@ med den lokale `docker-compose.yml"
 
     pip install -r test/requirements-test.txt
 
+    python .\test\test_integration.py      
+
+# Brugere, password og ACL
+
+## Opret brugere
+
+<!-- ~~    docker run --rm -v "C:\Users\smag\Docs\journal\1205hf25044p\ -\ IoT2\server\mosquitto\config:/mosquitto/config" eclipse-mosquitto mosquitto_passwd -c /mosquitto/config/passwords.txt device01 ~~ 
+~~docker run --rm eclipse-mosquitto chmod +x mosquitto/config/init-users.sh~~
+~~docker exec -it mosquitto sh /mosquitto/config/init-users.sh~~ -->
+
+    docker-compose exec mosquitto chmod +x /mosquitto/config/init-users.sh
+
+    docker-compose exec mosquitto chmod 0700 /mosquitto/config/passwords.txt
     
+    docker-compose exec mosquitto /mosquitto/config/init-users.sh
+

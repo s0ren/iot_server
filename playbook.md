@@ -64,3 +64,4 @@ med den lokale `docker-compose.yml"
     
     docker-compose exec mosquitto /mosquitto/config/init-users.sh
 
+...

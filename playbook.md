@@ -64,4 +64,14 @@ med den lokale `docker-compose.yml"
     
     docker-compose exec mosquitto /mosquitto/config/init-users.sh
 
+## test med bruger
+
+### publish
+
+    docker run --rm eclipse-mosquitto mosquitto_pub -h host.docker.internal -p 1883 -t sensor/test -m '{"value": 42.10, "timestamp": "2024-05-20T21:37:49.414Z"}' -u device01 -P device01-password
+
+### subscribe
+
+docker run --rm eclipse-mosquitto mosquitto_sub -h host.docker.internal -p 1883 -t sensor/# -u subscriber -P subscriber-password
+
 ...

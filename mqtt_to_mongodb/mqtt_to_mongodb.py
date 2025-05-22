@@ -8,6 +8,9 @@ from pymongo import MongoClient
 mqtt_host = os.environ.get("MQTT_HOST", "localhost")
 mqtt_port = int(os.environ.get("MQTT_PORT", 1883))
 mqtt_topic = os.environ.get("MQTT_TOPIC", "sensor/#")
+mqtt_username = os.environ.get("MQTT_USERNAME", 'subscriber')
+mqtt_password = os.environ.get("MQTT_PASSWORD", 'subscriber-password')
+
 
 mongo_uri = os.environ.get("MONGO_URI", "mongodb://localhost:27017/")
 mongo_db = os.environ.get("MONGO_DB", "iot")
@@ -41,6 +44,8 @@ def on_message(client, userdata, msg):
     print(f"Inserted into MongoDB: {document}")
 
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
+if mqtt_username and mqtt_password:
+    client.username_pw_set(mqtt_username, mqtt_password)
 client.on_connect = on_connect
 client.on_message = on_message
 
